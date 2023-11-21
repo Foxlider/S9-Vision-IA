@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TP2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="classification-dimages-par-deeplearning">Classification d'images par Deeplearning</h1>
+<blockquote>
+<p>Vision appliquée pour la Robotique<br>
+Majeure ROBIA/ module IA Vision<br>
+LONCHAMBON Alexis - 5IRC</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Prise en main de Tensorflow</p>
+</blockquote>
+<h2 id="partie-2">Partie 2</h2>
+<h3 id="question-1">Question 1</h3>
+<blockquote>
+<p>1.a Expliquer la différence entre la classification d’image, la détection d’image la segmentation d’images</p>
+</blockquote>
+<p>La classification d'images permet d'identifier une simple image et de la ranger dans une classe définie parmis une liste de classes.</p>
+<p>La détection d'images permet d'identifier la présence d'un ou plusieurs objets de différentes classes dans une image.</p>
+<p>La segmentation d'image pousse un peu plus loin la détection en ajoutant aussi où se trouve l'objet identifié précisément, quels pixels correspondent a l'objet.
+<img src="https://media.licdn.com/dms/image/D4D12AQGf61lmNOm3xA/article-cover_image-shrink_720_1280/0/1656513646049?e=2147483647&amp;v=beta&amp;t=1WhJuMdd_Gn9GCtfxUKDGGW2IWhBlRN-46ddUHcQSNA" alt="comparison"></p>
+<blockquote>
+<p>1.b Quelles sont les grandes solutions de détection d’objets
+( voir par exemple <a href="https://developers.arcgis.com/python/guide/how-ssd-works/">How SSD Works</a> )</p>
+</blockquote>
+<p>Voici une liste de solutions :</p>
+<ul>
+<li>R-CNN (Region-based Convolutional Neural Network) et plus tard Fast R-CNN, Faster R-CNN et Cascade R-CNN qui proposent des architectures plus optimisées</li>
+<li>SSD (Single-Shot Detector)</li>
+<li>YOLOv3 (You Only Look Once)</li>
+<li>RetinaNet</li>
+</ul>
+<h3 id="question-2">Question 2</h3>
+<p>On s’intéresse à l’exemple suivant</p>
+<p><a href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/hub/tutorials/tf2_object_detection.ipynb">COLAB</a></p>
+<p>(Attention pour une raison curieuse si le code ne marche pas, une solution peut etre d’utiliser  une autre version de object_detection, en ajoutant par exemple une cellule avant le moment qui pose problème <code>!pip install object_detection==0.0.3</code>)</p>
+<blockquote>
+<p>2.a Quelles sont les classes reconnues par le réseau ?</p>
+</blockquote>
+<p>Les classes sont dans le fichier <code>mscoco_label_map.pbtxt</code> :</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>person</td>
+<td>bicycle</td>
+<td>car</td>
+<td>motorcycle</td>
+<td>airplane</td>
+</tr>
+<tr>
+<td>bus</td>
+<td>train</td>
+<td>truck</td>
+<td>boat</td>
+<td>traffic light</td>
+</tr>
+<tr>
+<td>fire hydrant</td>
+<td>stop sign</td>
+<td>parking meter</td>
+<td>bench</td>
+<td>bird</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>dog</td>
+<td>horse</td>
+<td>sheep</td>
+<td>cow</td>
+</tr>
+<tr>
+<td>elephant</td>
+<td>bear</td>
+<td>zebra</td>
+<td>giraffe</td>
+<td>backpack</td>
+</tr>
+<tr>
+<td>umbrella</td>
+<td>handbag</td>
+<td>tie</td>
+<td>suitcase</td>
+<td>frisbee</td>
+</tr>
+<tr>
+<td>skis</td>
+<td>snowboard</td>
+<td>sports ball</td>
+<td>kite</td>
+<td>baseball bat</td>
+</tr>
+<tr>
+<td>baseball glove</td>
+<td>skateboard</td>
+<td>surfboard</td>
+<td>tennis racket</td>
+<td>bottle</td>
+</tr>
+<tr>
+<td>wine glass</td>
+<td>cup</td>
+<td>fork</td>
+<td>knife</td>
+<td>spoon</td>
+</tr>
+<tr>
+<td>bowl</td>
+<td>banana</td>
+<td>apple</td>
+<td>sandwich</td>
+<td>orange</td>
+</tr>
+<tr>
+<td>broccoli</td>
+<td>carrot</td>
+<td>hot dog</td>
+<td>pizza</td>
+<td>donut</td>
+</tr>
+<tr>
+<td>cake</td>
+<td>chair</td>
+<td>couch</td>
+<td>potted plant</td>
+<td>bed</td>
+</tr>
+<tr>
+<td>dining table</td>
+<td>toilet</td>
+<td>tv</td>
+<td>laptop</td>
+<td>mouse</td>
+</tr>
+<tr>
+<td>remote</td>
+<td>keyboard</td>
+<td>cell phone</td>
+<td>microwave</td>
+<td>oven</td>
+</tr>
+<tr>
+<td>toaster</td>
+<td>sink</td>
+<td>refrigerator</td>
+<td>book</td>
+<td>clock</td>
+</tr>
+<tr>
+<td>vase</td>
+<td>scissors</td>
+<td>teddy bear</td>
+<td>hair drier</td>
+<td>toothbrush</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>2.b Quelle partie du code correspond au chargement du modèle de réseau.Quelles sont les modèles proposés</p>
+</blockquote>
+<p>La sélection du modele est dans la catégorie Model Selection. On y charge les modeles depuis le TensorFlow Hub.</p>
+<p>On retrouve les modeles suivants :</p>
+<ul>
+<li>CenterNet HourGlass</li>
+<li>CenterNet ResNet</li>
+<li>EfficientNet</li>
+<li>SSD ResNet</li>
+<li>SSD MobileNet</li>
+<li>Faster R-CNN</li>
+<li>Mask R-CNN</li>
+</ul>
+<blockquote>
+<p>2.c Quelles sont les structures des modèles de réseaux sous jacents ?</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Network</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CenterNet HourGlass</td>
+<td><img src="https://www.researchgate.net/publication/354263873/figure/fig1/AS:1063041139499009@1630460166753/The-reduced-architecture-of-Hourglass-104-for-the-use-of-the-backbone-of-CenterNet.png" alt="Hourglass">  </br>For the case of the CenterNet with Hourglass backbone, the stacked Hourglass Network downsamples the input by 4×, followed by two sequential hourglass modules. Each hourglass module is made up of a uniform chain of 5-layer down- and up-convolutional network with skip connections. No changes were made in this network.</td>
+</tr>
+<tr>
+<td>CenterNet ResNet</td>
+<td><img src="https://www.researchgate.net/publication/361971824/figure/fig1/AS:1182050384125954@1658834181499/Overall-structure-of-CenterNet-based-on-Resnet50.png" alt="ResNet50">    </br>Standard ResNet modules are augmented with three transposed convolutional networks to incorporate higher resolution outputs. </br> Some modifications are by reducing the output filters of upsampling layers to 256, 128, and 64 respectively for computational reduction. The addition of a 3X3 deformable convolutional layer between each upsampling layers helped to get decent results on some standard datasets.</td>
+</tr>
+<tr>
+<td>EfficientNet</td>
+<td><img src="https://github.com/google/automl/raw/master/efficientdet/g3doc/network.png" alt="Efficient">  SDD Avec EfficientNet</td>
+</tr>
+<tr>
+<td>SSD ResNet</td>
+<td><img src="https://www.researchgate.net/publication/327737749/figure/fig1/AS:672393336987655@1537322472864/The-network-architecture-of-RetinaNet-RetinaNet-uses-the-Feature-Pyramid-Network-FPN.png" alt="Retinanet">  </br>RetinaNet</td>
+</tr>
+<tr>
+<td>SSD MobileNet</td>
+<td><img src="https://www.researchgate.net/publication/360288287/figure/fig3/AS:11431281090707861@1666144914309/Mobilenet-V2-SSD-network-structure.png" alt="MobileNet v2 SSD"></td>
+</tr>
+<tr>
+<td>Faster R-CNN</td>
+<td><img src="https://www.researchgate.net/publication/335513632/figure/fig1/AS:797773196689408@1567215360420/a-Network-structure-of-Faster-R-CNN-and-b-network-structure-of-the-proposed-FFAN-In.png" alt="Faster R-CNN"></td>
+</tr>
+<tr>
+<td>Mask R-CNN</td>
+<td><img src="https://www.researchgate.net/publication/341717040/figure/fig3/AS:896342276706307@1590716060131/The-schematic-architecture-of-Mask-R-CNN-Cls-layer-denotes-classification-layer-Reg.jpg" alt="MASK R-CNN">  </br>Mask R-CNN with Inception Resnet v2</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>2.d Tester sur une douzaine d’images de votre choix (Essayer sur des images contenant le plus de classes possibles reconnus) et faites un tableau comparatif</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Original Image</th>
+<th>CenterNet HourGlass104</th>
+<th>CenterNet ResNet101</th>
+<th>EfficientDet D4</th>
+<th>SSD MobileNet v1 FPN</th>
+<th>SSD ResNet101 FPN</th>
+<th>Faster R-CNN</th>
+<th>Mask R-CNN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="./img/z.jpg" alt="Z"></td>
+<td><img src="./img/z1.png" alt="CNGH"></td>
+<td><img src="./img/z2.png" alt="CNRN"></td>
+<td><img src="./img/z3.png" alt="EDD4"></td>
+<td><img src="./img/z4.png" alt="EEDMN"></td>
+<td><img src="./img/z5.png" alt="SSDRN"></td>
+<td><img src="./img/z6.png" alt="FRCNN"></td>
+<td><img src="./img/z7.png" alt="MCNN"></td>
+</tr>
+<tr>
+<td><img src="./img/zevent.jpg" alt="Zevent"></td>
+<td><img src="./img/zevent1.png" alt="CNGH"></td>
+<td><img src="./img/zevent2.png" alt="CNRN"></td>
+<td><img src="./img/zevent3.png" alt="EDD4"></td>
+<td><img src="./img/zevent4.png" alt="EEDMN"></td>
+<td><img src="./img/zevent5.png" alt="SSDRN"></td>
+<td><img src="./img/zevent6.png" alt="FRCNN"></td>
+<td><img src="./img/zevent7.png" alt="MCNN"></td>
+</tr>
+<tr>
+<td><img src="./img/bl.jpg" alt="BL"></td>
+<td><img src="./img/bl1.png" alt="CNGH"></td>
+<td><img src="./img/bl2.png" alt="CNRN"></td>
+<td><img src="./img/bl3.png" alt="EDD4"></td>
+<td><img src="./img/bl4.png" alt="EEDMN"></td>
+<td><img src="./img/bl5.png" alt="SSDRN"></td>
+<td><img src="./img/bl6.png" alt="FRCNN"></td>
+<td><img src="./img/bl7.png" alt="MCNN"></td>
+</tr>
+<tr>
+<td><img src="./img/bouchon.jpg" alt="Bouchon"></td>
+<td><img src="./img/bouchon1.png" alt="CNGH"></td>
+<td><img src="./img/bouchon2.png" alt="CNRN"></td>
+<td><img src="./img/bouchon3.png" alt="EDD4"></td>
+<td><img src="./img/bouchon4.png" alt="EEDMN"></td>
+<td><img src="./img/bouchon5.png" alt="SSDRN"></td>
+<td><img src="./img/bouchon6.png" alt="FRCNN"></td>
+<td><img src="./img/bouchon7.png" alt="MCNN"></td>
+</tr>
+<tr>
+<td><img src="./img/bouchon2.jpg" alt="Bouchon2"></td>
+<td><img src="./img/bouchon21.png" alt="CNGH"></td>
+<td><img src="./img/bouchon22.png" alt="CNRN"></td>
+<td><img src="./img/bouchon23.png" alt="EDD4"></td>
+<td><img src="./img/bouchon24.png" alt="EEDMN"></td>
+<td><img src="./img/bouchon25.png" alt="SSDRN"></td>
+<td><img src="./img/bouchon26.png" alt="FRCNN"></td>
+<td><img src="./img/bouchon27.png" alt="MCNN"></td>
+</tr>
+<tr>
+<td><img src="./img/elevage.jpg" alt="Elevage"></td>
+<td><img src="./img/elevage1.png" alt="CNGH"></td>
+<td><img src="./img/elevage2.png" alt="CNRN"></td>
+<td><img src="./img/elevage3.png" alt="EDD4"></td>
+<td><img src="./img/elevage4.png" alt="EEDMN"></td>
+<td><img src="./img/elevage5.png" alt="SSDRN"></td>
+<td><img src="./img/elevage6.png" alt="FRCNN"></td>
+<td><img src="./img/elevage7.png" alt="MCNN"></td>
+</tr>
+<tr>
+<td><img src="./img/l.jpg" alt="Lycee"></td>
+<td><img src="./img/l1.png" alt="CNGH"></td>
+<td><img src="./img/l2.png" alt="CNRN"></td>
+<td><img src="./img/l3.png" alt="EDD4"></td>
+<td><img src="./img/l4.png" alt="EEDMN"></td>
+<td><img src="./img/l5.png" alt="SSDRN"></td>
+<td><img src="./img/l6.png" alt="FRCNN"></td>
+<td><img src="./img/l7.png" alt="MCNN"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="question-3">Question 3</h3>
+<blockquote>
+<p>3.a A quoi sert Tensorflow Hub, et y a t il des solutions équivalentes ?</p>
+</blockquote>
+<p>Stocker les modeles en ligne</p>
+<p><a href="https://huggingface.co">HuggingFace</a><br>
+<a href="https://www.kaggle.com/models">Kaggle</a></p>
+<p>Note : TensorflowHub migre sur Kaggle a partir du 15 Novembre</p>
+<blockquote>
+<p>3.b Combien trouve t’on sur tensorflow hub de réseaux de detection d’objets ?</p>
+</blockquote>
+<p>On a 101 modeles pour l'Object Detection. Parmi ceux la :</p>
+<ul>
+<li>Inception ResNet v2</li>
+<li>MobileNet v2 RetinaNet</li>
+<li>SSD SpaghettiNet</li>
+<li>IRIS</li>
+<li>facedetection</li>
+<li>YOLOv5</li>
+<li>BlazeFace</li>
+</ul>
+<blockquote>
+<p>3.c Quelles sont les architectures de ces réseaux ?</p>
+</blockquote>
+<p>On a entre autres :</p>
+<ul>
+<li>EfficientNet (20)</li>
+<li>Faster R-CNN (15)</li>
+<li>SSD (15)</li>
+<li>CenterNet (9)</li>
+<li>RetinaNet (6)</li>
+<li>SSD MobileNet (12 en incluant V1 et V2)</li>
+<li>YOLO (3)</li>
+</ul>
+<blockquote>
+<p>3.d Quelles sont les classes reconnues ?</p>
+</blockquote>
+<p>La plupart utilisent COCO 2017 et l'autre majorité CPPE5</p>
+<blockquote>
+<p>3.e Y a-t-il des exemples pour gérer une phase d’apprentissage ?</p>
+</blockquote>
+<p><a href="https://www.kaggle.com/code/ryanholbrook/custom-convnets">Custom ConvNets (Kaggle)</a><br>
+<a href="https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html">TF2 Custom Object Detection Model Tutorial</a></p>
+
+</body>
+</html>
